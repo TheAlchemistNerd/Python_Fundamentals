@@ -65,11 +65,11 @@ def spirals(b, r, rot_fac, fuz_fac, arm):
     theta_max_degrees = 520
     for i in range(theta_max_degrees):    # range(0, 600, 2) for no black hole
         theta = math.radians(i)
-        x = r * math.exp(b * theta) * math.cos(b * theta + math.pi * roc_fac)\
+        x = r * math.exp(b * theta) * math.cos(b * theta + math.pi * rot_fac)\
             + randint(-fuzz, fuzz) *fuz_fac
-        y = r * math.exp(b * theta) * math.sin(b * theta + math.pi * roc_fac)\
+        y = r * math.exp(b * theta) * math.sin(b * theta + math.pi * rot_fac)\
             + randint(-fuzz, fuzz) *fuz_fac
-        spiral_stars.append(x, y)
+        spiral_stars.append((x, y))
 
     for x, y in spiral_stars:
         if arm == 0 and int(x % 2) == 0:
@@ -91,7 +91,7 @@ def star_haze(disc_radius_scaled, density):
 
 def main():
     """Calculate detection probability & ppost galaxy display & statistics."""
-    disc_radius_scaled, disc_vol_scaled, disc_vol_scaled = scale_galaxy()
+    disc_radius_scaled, disc_vol_scaled = scale_galaxy()
     detection_prob = detect_prob(disc_vol_scaled)
 
     #build 4 main spiral arms & 4 trailing arms
@@ -110,7 +110,8 @@ def main():
     c.create_text(-455, -330, fill='white', anchor='w',
                   text='One Pixel = {} LY'.format(SCALE))
     c.create_text(-455, -300, fill='white', anchor='w',
-                  text='Probability of detection for{:, } civilizations = {}'.format(NUM_CIVS, detection_prob))
+                  text='Probability of detection for {:,} civilizations = {}'.
+                  format(NUM_CIVS, detection_prob))
     
     # post Earth's 225 LY diameter bubble and annotate
     if SCALE == 25:

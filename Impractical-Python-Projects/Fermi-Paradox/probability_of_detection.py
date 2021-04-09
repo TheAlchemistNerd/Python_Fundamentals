@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 NUM_EQUIV_VOLUMES = 1000 # number of locations in which to place civilisations
 MAX_CIVS = 5000 # Maximum number of advanced civilisations.
 TRIALS = 1000 # number of times to model a given number of civilisations
-CIV_STEP_SIZE = 100 # ivilizations count step size
+CIV_STEP_SIZE = 100 # civilizations count step size
 
 x = [] # x values for polynomial fit
 y = [] # y values of the polynomial fit
@@ -36,5 +36,4 @@ print("\n{}".format(p))
 xp = np.linspace(0, 5)
 _ = plt.plot(x, y, '.', xp, p(xp), '-')
 plt.ylim(-0.5, 1.5)
-plt.show
-   
+plt.show()
